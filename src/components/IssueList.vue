@@ -1,7 +1,7 @@
 <template>
   <ul>
       <li v-for="x in issues" v-bind:key="x">
-        {{x}}
+        {{x.name}}
       </li>
   </ul>
 </template>

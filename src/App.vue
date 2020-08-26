@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <IssueList v-bind:issues='[1,2,3,4,5]'/>
+    <IssueList v-bind:issues="issues"/>
   </div>
 </template>
 
@@ -9,6 +9,9 @@ import IssueList from './components/IssueList.vue'
 
 export default {
   name: 'App',
+  data: ()=> {return {
+    issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }]
+  }},
   components: {
     IssueList,
   }

@@ -19,9 +19,10 @@ ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  padding: 0;
+  width: fit-content;
 }
 li {
+  text-align: left;
   display: inline-block;
   margin: 0 10px;
 }

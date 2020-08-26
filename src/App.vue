@@ -9,11 +9,9 @@ import IssueList from "./components/IssueList.vue";
 
 export default {
   name: "App",
-  data: () => {
-    return {
-      issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
-    };
-  },
+  data: () => ({
+    issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
+  }),
   components: {
     IssueList,
   },

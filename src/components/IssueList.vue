@@ -1,8 +1,6 @@
 <template>
   <ul>
-    <li v-for="x in issues" v-bind:key="x">
-      {{ x.name }}
-    </li>
+    <li v-for="(x, i) in issues" v-bind:key="x">{{ i }}: {{ x.name }}</li>
   </ul>
 </template>
 
@@ -13,7 +11,7 @@ export default {
     issues: Array,
   },
 };
-</script> 
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <IssueList v-bind:issues="issues"/>
+    <IssueList v-bind:issues="issues" />
   </div>
 </template>
 
 <script>
-import IssueList from './components/IssueList.vue'
+import IssueList from "./components/IssueList.vue";
 
 export default {
-  name: 'App',
-  data: ()=> {return {
-    issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }]
-  }},
+  name: "App",
+  data: () => {
+    return {
+      issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
+    };
+  },
   components: {
     IssueList,
-  }
-}
+  },
+};
 </script>
 
 <style>

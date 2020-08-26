@@ -1,19 +1,19 @@
 <template>
   <ul>
-      <li v-for="x in issues" v-bind:key="x">
-        {{x.name}}
-      </li>
+    <li v-for="x in issues" v-bind:key="x">
+      {{ x.name }}
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
-  name: 'issue-list',
+  name: "issue-list",
   props: {
-    issues: Array
-  }
-}
-</script>
+    issues: Array,
+  },
+};
+</script> 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

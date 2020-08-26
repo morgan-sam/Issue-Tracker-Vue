@@ -1,10 +1,8 @@
 <template>
   <ul>
-    <li>Issue 1</li>
-    <li>Issue 2</li>
-    <li>Issue 3</li>
-    <li>Issue 4</li>
-    <li>Issue 5</li>
+      <li v-for="x in issues" v-bind:key="x">
+        {{x}}
+      </li>
   </ul>
 </template>
 
@@ -12,7 +10,7 @@
 export default {
   name: 'issue-list',
   props: {
-    msg: String
+    issues: Array
   }
 }
 </script>

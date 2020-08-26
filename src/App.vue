@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <IssueList msg="Welcome to Your Vue.js App"/>
+    <IssueList v-bind:issues='[1,2,3,4,5]'/>
   </div>
 </template>
 

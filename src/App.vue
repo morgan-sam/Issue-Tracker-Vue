@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <IssueList v-bind:issues="issues" />
-    <button v-on:click="newIssueList" />
+    <button v-on:click="newIssueList">Randomise Issues</button>
   </div>
 </template>
 
@@ -37,6 +37,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+button {
+  width: fit-content;
 }
 </style>

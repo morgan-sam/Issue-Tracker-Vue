@@ -1,11 +1,15 @@
 <template>
   <div id="app">
     <IssueList v-bind:issues="issues" />
+    <button v-on:click="newIssueList" />
   </div>
 </template>
 
 <script>
 import IssueList from "./components/IssueList.vue";
+
+const randomString = () => Math.random().toString(36).substring(7);
+const genIssueList = (num) => [...Array(num)].map(() => randomString());
 
 export default {
   name: "App",
@@ -14,6 +18,9 @@ export default {
   }),
   components: {
     IssueList,
+  },
+  methods: {
+    newIssueList: () => console.log(genIssueList(5)),
   },
 };
 </script>

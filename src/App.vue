@@ -9,7 +9,8 @@
 import IssueList from "./components/IssueList.vue";
 
 const randomString = () => Math.random().toString(36).substring(7);
-const genIssueList = (num) => [...Array(num)].map(() => randomString());
+const genIssueList = (num) =>
+  [...Array(num)].map(() => ({ name: randomString() }));
 
 export default {
   name: "App",
@@ -20,7 +21,9 @@ export default {
     IssueList,
   },
   methods: {
-    newIssueList: () => console.log(genIssueList(5)),
+    newIssueList: function () {
+      this.issues = genIssueList(6);
+    },
   },
 };
 </script>

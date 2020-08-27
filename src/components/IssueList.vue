@@ -20,7 +20,6 @@ ul {
   flex-direction: column;
   list-style-type: none;
   width: fit-content;
-  margin: 0;
   padding: 1rem;
 }
 li {

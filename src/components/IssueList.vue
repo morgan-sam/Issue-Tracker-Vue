@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(x, i) in issues" v-bind:key="x">{{ i }}: {{ x.name }}</li>
+    <li v-for="(x, i) in issues" v-bind:key="i">{{ i }}: {{ x.name }}</li>
   </ul>
 </template>
 

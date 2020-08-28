@@ -8,13 +8,14 @@
 <script>
 import IssueList from "./components/IssueList.vue";
 
+const capitalise = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const randomString = () => Math.random().toString(36).substring(7);
 const randomWords = async () => {
   const req = await fetch(
     "https://random-word-api.herokuapp.com/word?number=2"
   );
   let text = await req.json();
-  return text.join(" ");
+  return capitalise(text.join(" "));
 };
 const genIssueList = (num) =>
   [...Array(num)].map(() => ({ name: randomString() }));

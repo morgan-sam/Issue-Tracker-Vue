@@ -20,8 +20,14 @@ const randomWords = async () => {
 const genIssueList = (num) =>
   [...Array(num)].map(() => ({ name: randomString() }));
 
+const genWordsIssueList = async (num) => {
+  return await Promise.all(
+    [...Array(num)].map(async () => ({ name: await randomWords() }))
+  );
+};
+
 (async () => {
-  const test = await randomWords();
+  const test = await genWordsIssueList(6);
   console.log(test);
 })();
 

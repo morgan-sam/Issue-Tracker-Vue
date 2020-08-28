@@ -9,7 +9,6 @@
 import IssueList from "./components/IssueList.vue";
 
 const capitalise = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-const randomString = () => Math.random().toString(36).substring(7);
 const randomWords = async () => {
   const req = await fetch(
     "https://random-word-api.herokuapp.com/word?number=2"
@@ -17,20 +16,11 @@ const randomWords = async () => {
   let text = await req.json();
   return capitalise(text.join(" "));
 };
-const genIssueList = (num) =>
-  [...Array(num)].map(() => ({ name: randomString() }));
-
-const genWordsIssueList = async (num) => {
+const genIssueList = async (num) => {
   return await Promise.all(
     [...Array(num)].map(async () => ({ name: await randomWords() }))
   );
 };
-
-(async () => {
-  const test = await genWordsIssueList(6);
-  console.log(test);
-})();
-
 export default {
   name: "App",
   data: () => ({
@@ -40,8 +30,9 @@ export default {
     IssueList,
   },
   methods: {
-    newIssueList: function () {
-      this.issues = genIssueList(6);
+    newIssueList: async function () {
+      const newIssues = await genIssueList(6);
+      this.issues = newIssues;
     },
   },
 };

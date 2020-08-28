@@ -8,7 +8,7 @@
 <script>
 import IssueList from "./components/IssueList.vue";
 
-const capitalise = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const capitalise = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 const randomString = () => Math.random().toString(36).substring(7);
 const randomWords = async () => {
   const req = await fetch(

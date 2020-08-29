@@ -46,7 +46,7 @@ export default {
         }
       );
       const data = await req.json();
-      console.log(data);
+      this.issues = data.items;
     },
   },
 };

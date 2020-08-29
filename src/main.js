@@ -1,6 +1,6 @@
+import "./reset.css";
 import Vue from "vue";
 import App from "./App.vue";
-import "./reset.css";
 import dotenv from "dotenv";
 
 dotenv.config();

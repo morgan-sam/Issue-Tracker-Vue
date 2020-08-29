@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <IssueList v-bind:issues="issues" />
+    <Grid />
     <button v-on:click="newIssueList">Randomise Issues</button>
     <button v-on:click="getGithubIssues">getGithubIssues</button>
   </div>
@@ -8,6 +9,7 @@
 
 <script>
 import IssueList from "./components/IssueList.vue";
+import Grid from "./components/Grid.vue";
 
 const capitalise = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 const randomWords = async () => {
@@ -29,6 +31,7 @@ export default {
   }),
   components: {
     IssueList,
+    Grid,
   },
   methods: {
     newIssueList: async function() {

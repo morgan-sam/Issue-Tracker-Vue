@@ -2,6 +2,7 @@
   <div id="app">
     <IssueList v-bind:issues="issues" />
     <button v-on:click="newIssueList">Randomise Issues</button>
+    <button v-on:click="getGithubIssues">getGithubIssues</button>
   </div>
 </template>
 
@@ -34,9 +35,14 @@ export default {
       const newIssues = await genIssueList(6);
       this.issues = newIssues;
     },
+    getGithubIssues: async function () {
+      const req = await fetch("https://api.github.com/search/code");
+      const data = await req.json();
+      console.log(data);
+    },
   },
 };
-</script>
+</script> 
 
 <style>
 #app {

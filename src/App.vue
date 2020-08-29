@@ -31,18 +31,26 @@ export default {
     IssueList,
   },
   methods: {
-    newIssueList: async function () {
+    newIssueList: async function() {
       const newIssues = await genIssueList(6);
       this.issues = newIssues;
     },
-    getGithubIssues: async function () {
-      const req = await fetch("https://api.github.com/search/code");
+    getGithubIssues: async function() {
+      const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
+      const req = await fetch(
+        `https://api.github.com/search/repositories?q=react&sort=stars&order=desc`,
+        {
+          headers: {
+            Authorization: `token ${authToken}`,
+          },
+        }
+      );
       const data = await req.json();
       console.log(data);
     },
   },
 };
-</script> 
+</script>
 
 <style>
 #app {

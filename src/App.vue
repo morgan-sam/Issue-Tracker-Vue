@@ -2,8 +2,10 @@
   <div id="app">
     <IssueList v-bind:issues="issues" />
     <Grid v-bind:results="results" />
-    <button v-on:click="newIssueList">Randomise Issues</button>
-    <button v-on:click="getGithubResults">getGithubResults</button>
+    <div class="btn-container">
+      <button v-on:click="newIssueList">Randomise Issues</button>
+      <button v-on:click="getGithubResults">getGithubResults</button>
+    </div>
   </div>
 </template>
 
@@ -75,5 +77,9 @@ export default {
 }
 button {
   width: fit-content;
+  margin: 0.5rem;
+}
+.btn-container {
+  display: flex;
 }
 </style>

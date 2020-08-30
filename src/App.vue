@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <IssueList v-bind:issues="issues" />
     <Grid v-bind:results="results" />
     <div class="btn-container">
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style>
-#app {
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

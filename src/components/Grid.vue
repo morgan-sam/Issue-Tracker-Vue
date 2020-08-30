@@ -6,7 +6,7 @@
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
       <td>{{x.name}}</td>
-      <td>{{x.stars}}</td>
+      <td>{{x.stargazers_count}}</td>
     </tr>
   </table>
 </template>

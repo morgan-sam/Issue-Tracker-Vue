@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <IssueList v-bind:issues="issues" />
-    <Grid />
+    <Grid v-bind:results="results" />
     <button v-on:click="newIssueList">Randomise Issues</button>
     <button v-on:click="getGithubIssues">getGithubIssues</button>
   </div>
@@ -28,17 +28,21 @@ export default {
   name: "App",
   data: () => ({
     issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
+    results: [
+      { name: "Alarm App", stars: 1241 },
+      { name: "Path Finder", stars: 3545 },
+    ],
   }),
   components: {
     IssueList,
     Grid,
   },
   methods: {
-    newIssueList: async function() {
+    newIssueList: async function () {
       const newIssues = await genIssueList(6);
       this.issues = newIssues;
     },
-    getGithubIssues: async function() {
+    getGithubIssues: async function () {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
         `https://api.github.com/search/repositories?q=react&sort=stars&order=desc`,

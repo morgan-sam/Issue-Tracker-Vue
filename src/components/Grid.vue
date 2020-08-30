@@ -4,11 +4,19 @@
       <th>Name</th>
       <th>Stars</th>
     </tr>
+    <tr v-for="(x, i) in results" v-bind:key="i">
+      <td>{{x.name}}</td>
+      <td>{{x.stars}}</td>
+    </tr>
   </table>
 </template>
 
 <script>
-// /
+export default {
+  props: {
+    results: Array,
+  },
+};
 </script>
 
 <style scoped>

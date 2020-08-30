@@ -31,8 +31,8 @@ export default {
   data: () => ({
     issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
     results: [
-      { name: "Alarm App", stars: 1241 },
-      { name: "Path Finder", stars: 3545 },
+      { name: "Alarm App", stargazers_count: 1241 },
+      { name: "Path Finder", stargazers_count: 3545 },
     ],
   }),
   components: {

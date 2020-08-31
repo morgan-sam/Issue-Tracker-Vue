@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <div class="horizontal-container">
-      <IssueList v-bind:issues="issues" />
       <Grid v-bind:results="results" />
+      <IssueList v-bind:issues="issues" />
     </div>
     <div class="horizontal-container">
       <button v-on:click="newIssueList">Randomise Issues</button>

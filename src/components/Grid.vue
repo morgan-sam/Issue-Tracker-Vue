@@ -5,7 +5,7 @@
       <th>Stars</th>
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
-      <td>{{x.name}}</td>
+      <td v-on:click="cellClicked(x.name)">{{x.name}}</td>
       <td>{{x.stargazers_count}}</td>
     </tr>
   </table>
@@ -15,6 +15,12 @@
 export default {
   props: {
     results: Array,
+  },
+  methods: {
+    cellClicked: function (name) {
+      console.log(name);
+      return null;
+    },
   },
 };
 </script>

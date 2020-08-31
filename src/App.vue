@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <IssueList v-bind:issues="issues" />
-    <Grid v-bind:results="results" />
-    <div class="btn-container">
+    <div class="horizontal-container">
+      <IssueList v-bind:issues="issues" />
+      <Grid v-bind:results="results" />
+    </div>
+    <div class="horizontal-container">
       <button v-on:click="newIssueList">Randomise Issues</button>
       <button v-on:click="getGithubResults">getGithubResults</button>
     </div>
@@ -79,7 +81,10 @@ button {
   width: fit-content;
   margin: 0.5rem;
 }
-.btn-container {
+.horizontal-container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 </style>

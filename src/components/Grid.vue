@@ -5,7 +5,7 @@
       <th>Stars</th>
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
-      <td v-on:click="cellClicked(x.name)">{{x.name}}</td>
+      <td class="name-cell" v-on:click="cellClicked(x.name)">{{x.name}}</td>
       <td>{{x.stargazers_count}}</td>
     </tr>
   </table>
@@ -39,5 +39,9 @@ td {
 th,
 td {
   padding: 0.5rem;
+}
+
+.name-cell {
+  cursor: pointer;
 }
 </style>

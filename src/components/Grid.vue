@@ -3,10 +3,12 @@
     <tr>
       <th>Name</th>
       <th>Stars</th>
+      <th>Issues</th>
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
       <td class="name-cell" v-on:click="cellClicked(x.name)">{{x.name}}</td>
       <td>{{x.stargazers_count}}</td>
+      <td>{{x.open_issues}}</td>
     </tr>
   </table>
 </template>

@@ -1,7 +1,13 @@
 <template>
-  <ul>
-    <li v-for="(x, i) in issues" v-bind:key="i">{{ i + 1 }}: {{ x.title }}</li>
-  </ul>
+  <div>
+    <ul>
+      <li v-for="(x, i) in issues" v-bind:key="i">
+        {{ i + 1 }}: {{ x.title }}
+      </li>
+    </ul>
+    <button v-on:click="previousPage()">Previous</button>
+    <button v-on:click="nextPage()">Next</button>
+  </div>
 </template>
 
 <script>
@@ -9,6 +15,14 @@ export default {
   name: "issue-list",
   props: {
     issues: Array,
+  },
+  methods: {
+    previousPage: function () {
+      console.log("Previous page");
+    },
+    nextPage: function () {
+      console.log("Next page");
+    },
   },
 };
 </script>

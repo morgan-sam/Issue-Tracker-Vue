@@ -7,9 +7,7 @@
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
       <td>
-        <span class="name-text" v-on:click="cellClicked(x.name)">{{
-          x.name
-        }}</span>
+        <span class="name-text" v-on:click="listIssues(x)">{{ x.name }}</span>
       </td>
       <td>{{ x.stargazers_count }}</td>
       <td>{{ x.open_issues }}</td>
@@ -23,8 +21,15 @@ export default {
     results: Array,
   },
   methods: {
-    cellClicked: function (name) {
-      console.log(name);
+    listIssues: async function (repo) {
+      const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
+      const req = await fetch(`${repo.url}/issues`, {
+        headers: {
+          Authorization: `token ${authToken}`,
+        },
+      });
+      const data = await req.json();
+      console.log(data);
       return null;
     },
   },

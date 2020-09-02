@@ -6,7 +6,11 @@
       <th>Issues</th>
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
-      <td class="name-cell" v-on:click="cellClicked(x.name)">{{ x.name }}</td>
+      <td>
+        <span class="name-text" v-on:click="cellClicked(x.name)">{{
+          x.name
+        }}</span>
+      </td>
       <td>{{ x.stargazers_count }}</td>
       <td>{{ x.open_issues }}</td>
     </tr>
@@ -44,10 +48,10 @@ td {
   padding: 0.5rem;
 }
 
-.name-cell {
+.name-text {
   cursor: pointer;
 }
-.name-cell:hover {
+.name-text:hover {
   color: red;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="horizontal-container">
-      <Grid v-bind:results="results" />
+      <Grid v-bind:results="results" v-bind:showIssues="showIssues" />
       <IssueList v-bind:issues="issues" />
     </div>
     <div class="horizontal-container">
@@ -59,6 +59,16 @@ export default {
       const data = await req.json();
       this.results = data.items;
       console.log(data.items);
+    },
+    showIssues: async function (repo) {
+      const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
+      const req = await fetch(`${repo.url}/issues`, {
+        headers: {
+          Authorization: `token ${authToken}`,
+        },
+      });
+      const data = await req.json();
+      this.issues = data;
     },
   },
 };

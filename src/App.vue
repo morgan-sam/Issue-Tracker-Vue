@@ -5,7 +5,6 @@
       <IssueList v-bind:issues="issues" />
     </div>
     <div class="horizontal-container">
-      <button v-on:click="newIssueList">Randomise Issues</button>
       <button v-on:click="getGithubResults">getGithubResults</button>
     </div>
   </div>
@@ -15,19 +14,6 @@
 import IssueList from "./components/IssueList.vue";
 import Grid from "./components/Grid.vue";
 
-const capitalise = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-const randomWords = async () => {
-  const req = await fetch(
-    "https://random-word-api.herokuapp.com/word?number=2"
-  );
-  let text = await req.json();
-  return capitalise(text.join(" "));
-};
-const genIssueList = async (num) => {
-  return await Promise.all(
-    [...Array(num)].map(async () => ({ name: await randomWords() }))
-  );
-};
 export default {
   name: "App",
   data: () => ({
@@ -42,10 +28,6 @@ export default {
     Grid,
   },
   methods: {
-    newIssueList: async function () {
-      const newIssues = await genIssueList(6);
-      this.issues = newIssues;
-    },
     getGithubResults: async function () {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
@@ -58,7 +40,6 @@ export default {
       );
       const data = await req.json();
       this.results = data.items;
-      console.log(data.items);
     },
     showIssues: async function (repo) {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;

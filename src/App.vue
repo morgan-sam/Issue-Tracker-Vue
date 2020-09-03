@@ -8,11 +8,13 @@
     </div>
     <div class="horizontal-container">
       <Grid
+        v-if="results.length"
         v-bind:results="results"
         v-bind:showIssues="showIssues"
         v-bind:setSelectedRepo="setSelectedRepo"
       />
       <IssueList
+        v-if="issues.length"
         v-bind:issues="issues"
         v-bind:issuePage="issuePage"
         v-bind:changeIssuePage="changeIssuePage"

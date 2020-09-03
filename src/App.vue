@@ -43,7 +43,7 @@ export default {
     },
     showIssues: async function (repo) {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
-      const req = await fetch(`${repo.url}/issues`, {
+      const req = await fetch(`${repo.url}/issues?per_page=50`, {
         headers: {
           Authorization: `token ${authToken}`,
         },

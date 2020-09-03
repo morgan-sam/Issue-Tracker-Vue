@@ -41,7 +41,7 @@ export default {
     getGithubResults: async function () {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
-        `https://api.github.com/search/repositories?q=react&sort=stars&order=desc`,
+        `https://api.github.com/search/repositories?per_page=20&page=1&q=vue&sort=stars&order=desc`,
         {
           headers: {
             Authorization: `token ${authToken}`,

@@ -1,8 +1,16 @@
 <template>
   <div class="app">
     <div class="horizontal-container">
-      <Grid v-bind:results="results" v-bind:showIssues="showIssues" />
-      <IssueList v-bind:issues="issues" />
+      <Grid
+        v-bind:results="results"
+        v-bind:showIssues="showIssues"
+        v-bind:setSelectedRepo="setSelectedRepo"
+      />
+      <IssueList
+        v-bind:issues="issues"
+        v-bind:issuePage="issuePage"
+        v-bind:changeIssuePage="changeIssuePage"
+      />
     </div>
     <div class="horizontal-container">
       <button v-on:click="getGithubResults">getGithubResults</button>
@@ -22,6 +30,8 @@ export default {
       { name: "Alarm App", stargazers_count: 1241 },
       { name: "Path Finder", stargazers_count: 3545 },
     ],
+    selectedRepo: null,
+    issuePage: 1,
   }),
   components: {
     IssueList,
@@ -41,15 +51,33 @@ export default {
       const data = await req.json();
       this.results = data.items;
     },
-    showIssues: async function (repo) {
+    showIssues: async function (page) {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
-      const req = await fetch(`${repo.url}/issues?per_page=50`, {
-        headers: {
-          Authorization: `token ${authToken}`,
-        },
-      });
+      const req = await fetch(
+        `${this.selectedRepo.url}/issues?per_page=20&page=${page}`,
+        {
+          headers: {
+            Authorization: `token ${authToken}`,
+          },
+        }
+      );
       const data = await req.json();
       this.issues = data;
+    },
+    changeIssuePage: async function (diff) {
+      let newPage = this.issuePage + diff;
+      if (newPage < 1) newPage = 1;
+      await this.showIssues(newPage);
+      this.issuePage = newPage;
+    },
+    setSelectedRepo: function (repo) {
+      this.selectedRepo = repo;
+    },
+  },
+  watch: {
+    selectedRepo: async function () {
+      await this.showIssues();
+      this.issuePage = 1;
     },
   },
 };

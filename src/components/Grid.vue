@@ -7,7 +7,9 @@
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
       <td>
-        <span class="name-text" v-on:click="showIssues(x)">{{ x.name }}</span>
+        <span class="name-text" v-on:click="setSelectedRepo(x)">{{
+          x.name
+        }}</span>
       </td>
       <td>{{ x.stargazers_count }}</td>
       <td>{{ x.open_issues }}</td>
@@ -20,6 +22,7 @@ export default {
   props: {
     results: Array,
     showIssues: Function,
+    setSelectedRepo: Function,
   },
 };
 </script>

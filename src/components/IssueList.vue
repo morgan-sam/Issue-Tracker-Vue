@@ -2,11 +2,11 @@
   <div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
-        {{ i + 1 }}: {{ x.title }}
+        {{ i + 1 + (issuePage - 1) * 30 }}: {{ x.title }}
       </li>
     </ul>
-    <button v-on:click="previousPage()">Previous</button>
-    <button v-on:click="nextPage()">Next</button>
+    <button v-on:click="changeIssuePage(-1)">Previous</button>
+    <button v-on:click="changeIssuePage(1)">Next</button>
   </div>
 </template>
 
@@ -15,14 +15,8 @@ export default {
   name: "issue-list",
   props: {
     issues: Array,
-  },
-  methods: {
-    previousPage: function () {
-      console.log("Previous page");
-    },
-    nextPage: function () {
-      console.log("Next page");
-    },
+    issuePage: Number,
+    changeIssuePage: Function,
   },
 };
 </script>

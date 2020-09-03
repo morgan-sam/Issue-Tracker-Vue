@@ -13,7 +13,10 @@
       />
     </div>
     <div class="horizontal-container">
-      <button v-on:click="getGithubResults">getGithubResults</button>
+      <form>
+        <input v-model="search" type="text" />
+      </form>
+      <button v-on:click="getGithubResults">Search</button>
     </div>
   </div>
 </template>
@@ -29,6 +32,7 @@ export default {
     results: [],
     selectedRepo: null,
     issuePage: 1,
+    search: "",
   }),
   components: {
     IssueList,
@@ -38,7 +42,7 @@ export default {
     getGithubResults: async function () {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
-        `https://api.github.com/search/repositories?per_page=20&page=1&q=vue&sort=stars&order=desc`,
+        `https://api.github.com/search/repositories?q=${this.search}&per_page=20&page=1&sort=stars&order=desc`,
         {
           headers: {
             Authorization: `token ${authToken}`,

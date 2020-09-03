@@ -2,7 +2,17 @@
   <div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
-        {{ i + 1 + (issuePage - 1) * 30 }}: {{ x.title }}
+        <div class="issue">
+          {{ i + 1 + (issuePage - 1) * 30 }}: {{ x.title }}
+        </div>
+        <div
+          class="label"
+          v-for="(a, b) in (x.labels)"
+          v-bind:key="b"
+          v-bind:style="{ background: '#' + a.color }"
+        >
+          {{ a.name }}
+        </div>
       </li>
     </ul>
     <button v-on:click="changeIssuePage(-1)">Previous</button>
@@ -31,12 +41,15 @@ ul {
   padding: 1rem;
 }
 li {
+  display: flex;
   text-align: left;
-  display: inline-block;
   margin: 0 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 30rem;
+}
+.issue {
+  margin-right: 10px;
+}
+.label {
+  width: fit-content;
+  margin-right: 10px;
 }
 </style>

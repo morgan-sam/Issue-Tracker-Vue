@@ -34,5 +34,9 @@ li {
   text-align: left;
   display: inline-block;
   margin: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 30rem;
 }
 </style>

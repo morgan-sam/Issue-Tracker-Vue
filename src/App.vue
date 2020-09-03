@@ -2,7 +2,12 @@
   <div class="app">
     <div class="horizontal-container">
       <form>
-        <input v-model="search" type="text" />
+        <input
+          v-model="search"
+          v-on:keydown.enter.prevent
+          v-on:keyup.enter="getGithubResults"
+          type="text"
+        />
       </form>
       <button v-on:click="getGithubResults">Search</button>
     </div>

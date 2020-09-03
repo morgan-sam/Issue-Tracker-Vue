@@ -1,11 +1,13 @@
 <template>
   <table>
     <tr>
+      <th>Index</th>
       <th>Name</th>
       <th>Stars</th>
       <th>Issues</th>
     </tr>
     <tr v-for="(x, i) in results" v-bind:key="i">
+      <td>{{ i + 1 }}</td>
       <td>
         <span class="name-text" v-on:click="setSelectedRepo(x)">{{
           x.name

@@ -25,11 +25,8 @@ import Grid from "./components/Grid.vue";
 export default {
   name: "App",
   data: () => ({
-    issues: [{ name: "Bug" }, { name: "Typo" }, { name: "Missing Feature" }],
-    results: [
-      { name: "Alarm App", stargazers_count: 1241 },
-      { name: "Path Finder", stargazers_count: 3545 },
-    ],
+    issues: [],
+    results: [],
     selectedRepo: null,
     issuePage: 1,
   }),

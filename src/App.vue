@@ -1,6 +1,12 @@
 <template>
   <div class="app">
     <div class="horizontal-container">
+      <form>
+        <input v-model="search" type="text" />
+      </form>
+      <button v-on:click="getGithubResults">Search</button>
+    </div>
+    <div class="horizontal-container">
       <Grid
         v-bind:results="results"
         v-bind:showIssues="showIssues"
@@ -11,12 +17,6 @@
         v-bind:issuePage="issuePage"
         v-bind:changeIssuePage="changeIssuePage"
       />
-    </div>
-    <div class="horizontal-container">
-      <form>
-        <input v-model="search" type="text" />
-      </form>
-      <button v-on:click="getGithubResults">Search</button>
     </div>
   </div>
 </template>

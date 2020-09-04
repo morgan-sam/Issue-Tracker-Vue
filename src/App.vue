@@ -26,6 +26,7 @@
         v-if="issues.length"
         v-bind:issues="issues"
         v-bind:issuePage="issuePage"
+        v-bind:issuesPerPage="issuesPerPage"
         v-bind:changeIssuePage="changeIssuePage"
       />
     </div>
@@ -43,6 +44,7 @@ export default {
     results: [],
     selectedRepo: null,
     issuePage: 1,
+    issuesPerPage: 40,
     search: "",
     searching: false,
   }),
@@ -69,7 +71,7 @@ export default {
     showIssues: async function (page) {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
-        `${this.selectedRepo.url}/issues?per_page=20&page=${page}`,
+        `${this.selectedRepo.url}/issues?per_page=${this.issuesPerPage}&page=${page}`,
         {
           headers: {
             Authorization: `token ${authToken}`,

@@ -29,6 +29,7 @@
         v-bind:issuePage="issuePage"
         v-bind:issuesPerPage="issuesPerPage"
         v-bind:changeIssuePage="changeIssuePage"
+        v-bind:searching="searching"
       />
     </div>
   </div>
@@ -73,6 +74,7 @@ export default {
       this.searching.repos = false;
     },
     showIssues: async function (page) {
+      this.searching.issues = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
         `${this.selectedRepo.url}/issues?per_page=${this.issuesPerPage}&page=${page}`,
@@ -83,8 +85,8 @@ export default {
         }
       );
       const data = await req.json();
-      console.log(data);
       this.issues = data;
+      this.searching.issues = false;
     },
     changeIssuePage: async function (diff) {
       let newPage = this.issuePage + diff;

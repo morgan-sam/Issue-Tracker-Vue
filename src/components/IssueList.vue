@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div v-if="searching.issues">Loading...</div>
+  <div v-else>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
         <div class="issue">
@@ -28,6 +29,7 @@ export default {
     issuePage: Number,
     issuesPerPage: Number,
     changeIssuePage: Function,
+    searching: Object,
   },
 };
 </script>

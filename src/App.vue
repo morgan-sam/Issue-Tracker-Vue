@@ -15,7 +15,7 @@
       </form>
       <button v-on:click="getGithubResults">Search</button>
     </div>
-    <div class="horizontal-container">
+    <div class="two-grid-container">
       <Grid
         v-if="results.length"
         v-bind:results="results"
@@ -121,5 +121,14 @@ button {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.two-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+.two-grid-container > * {
+  width: auto;
 }
 </style>

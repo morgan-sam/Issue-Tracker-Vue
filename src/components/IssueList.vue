@@ -10,14 +10,7 @@
           class="label"
           v-for="(a, b) in x.labels"
           v-bind:key="b"
-          v-bind:style="{
-            background: '#' + a.color,
-            border: `1px solid ${
-              a.color === 'fff' || a.color === 'ffffff' || a.color === 'white'
-                ? 'black'
-                : 'none'
-            }`,
-          }"
+          v-bind:style="getLabelStyle(a.color)"
         >
           {{ a.name }}
         </div>
@@ -39,6 +32,16 @@ export default {
     issuesPerPage: Number,
     changeIssuePage: Function,
     searching: Object,
+  },
+  methods: {
+    getLabelStyle: (color) => ({
+      background: "#" + color,
+      border: `1px solid ${
+        color === "fff" || color === "ffffff" || color === "white"
+          ? "black"
+          : "none"
+      }`,
+    }),
   },
 };
 </script>

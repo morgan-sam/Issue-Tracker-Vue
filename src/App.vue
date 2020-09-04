@@ -43,7 +43,7 @@ export default {
   data: () => ({
     issues: [],
     results: [],
-    selectedRepo: null,
+    selectedRepo: { id: null },
     issuePage: 1,
     issuesPerPage: 40,
     search: "",

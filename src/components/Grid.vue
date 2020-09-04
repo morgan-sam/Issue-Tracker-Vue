@@ -6,7 +6,11 @@
       <th>Stars</th>
       <th>Issues</th>
     </tr>
-    <tr v-for="(x, i) in results" v-bind:key="i">
+    <tr
+      v-for="(x, i) in results"
+      v-bind:key="i"
+      v-bind:class="[x.id === selectedRepo.id ? 'selected-repo' : '']"
+    >
       <td>{{ i + 1 }}</td>
       <td>
         <span class="name-text" v-on:click="setSelectedRepo(x)">{{
@@ -24,6 +28,7 @@ export default {
   props: {
     results: Array,
     showIssues: Function,
+    selectedRepo: Object,
     setSelectedRepo: Function,
   },
 };
@@ -51,5 +56,9 @@ td {
 }
 .name-text:hover {
   color: red;
+}
+.selected-repo {
+  background-color: salmon;
+  color: white;
 }
 </style>

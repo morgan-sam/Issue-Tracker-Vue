@@ -20,6 +20,7 @@
         v-if="results.length"
         v-bind:results="results"
         v-bind:showIssues="showIssues"
+        v-bind:selectedRepo="selectedRepo"
         v-bind:setSelectedRepo="setSelectedRepo"
       />
       <IssueList

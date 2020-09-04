@@ -1,6 +1,10 @@
 <template>
   <div class="app">
     <div class="horizontal-container">
+      <div v-if="searching">Searching...</div>
+      <div v-else>Enter a search term:</div>
+    </div>
+    <div class="horizontal-container">
       <form>
         <input
           v-model="search"
@@ -40,6 +44,7 @@ export default {
     selectedRepo: null,
     issuePage: 1,
     search: "",
+    searching: false,
   }),
   components: {
     IssueList,
@@ -47,6 +52,7 @@ export default {
   },
   methods: {
     getGithubResults: async function () {
+      this.searching = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
         `https://api.github.com/search/repositories?q=${this.search}&per_page=20&page=1&sort=stars&order=desc`,
@@ -58,6 +64,7 @@ export default {
       );
       const data = await req.json();
       this.results = data.items;
+      this.searching = false;
     },
     showIssues: async function (page) {
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;

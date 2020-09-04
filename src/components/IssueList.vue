@@ -16,8 +16,10 @@
         </div>
       </li>
     </ul>
-    <button v-on:click="changeIssuePage(-1)">Previous</button>
-    <button v-on:click="changeIssuePage(1)">Next</button>
+    <div class="btn-container">
+      <button v-on:click="changeIssuePage(-1)">Previous</button>
+      <button v-on:click="changeIssuePage(1)">Next</button>
+    </div>
   </div>
 </template>
 
@@ -54,5 +56,8 @@ li {
 .label {
   width: fit-content;
   margin-right: 10px;
+}
+.btn-container {
+  display: flex;
 }
 </style>

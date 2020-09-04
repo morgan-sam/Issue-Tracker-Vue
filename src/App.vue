@@ -86,6 +86,7 @@ export default {
       );
       const data = await req.json();
       this.issues = data;
+      console.log(data);
       this.searching.issues = false;
     },
     changeIssuePage: async function (diff) {

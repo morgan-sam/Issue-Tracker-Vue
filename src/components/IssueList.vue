@@ -10,7 +10,14 @@
           class="label"
           v-for="(a, b) in x.labels"
           v-bind:key="b"
-          v-bind:style="{ background: '#' + a.color }"
+          v-bind:style="{
+            background: '#' + a.color,
+            border: `1px solid ${
+              a.color === 'fff' || a.color === 'ffffff' || a.color === 'white'
+                ? 'black'
+                : 'none'
+            }`,
+          }"
         >
           {{ a.name }}
         </div>

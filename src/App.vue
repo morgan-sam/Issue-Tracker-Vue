@@ -17,7 +17,7 @@
     </div>
     <div class="two-grid-container">
       <Grid
-        v-if="repos.length"
+        v-if="repos ? repos.length > 0 : false"
         v-bind:repos="repos"
         v-bind:reposCount="reposCount"
         v-bind:showIssues="showIssues"
@@ -28,7 +28,7 @@
         v-bind:reposPerPage="reposPerPage"
       />
       <IssueList
-        v-if="issues.length"
+        v-if="issues ? issues.length > 0 : false"
         v-bind:issues="issues"
         v-bind:issuePage="issuePage"
         v-bind:issuesPerPage="issuesPerPage"
@@ -70,17 +70,13 @@ export default {
   },
   methods: {
     showRepos: async function (page) {
-      console.log("search repos");
+      console.log(page);
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
-      const req = await fetch(
-        `https://api.github.com/search/repositories?q=${this.search}&per_page=${this.reposPerPage}&page=${page}&sort=stars&order=desc`,
-        {
-          headers: {
-            Authorization: `token ${authToken}`,
-          },
-        }
-      );
+      const url = `https://api.github.com/search/repositories?q=${this.search}&per_page=${this.reposPerPage}&page=${page}&sort=stars&order=desc`;
+      const req = await fetch(url, {
+        headers: { Authorization: `token ${authToken}` },
+      });
       const data = await req.json();
       this.repos = data.items;
       this.reposCount = data.total_count;
@@ -89,14 +85,10 @@ export default {
     showIssues: async function (page) {
       this.searching.issues = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
-      const req = await fetch(
-        `${this.selectedRepo.url}/issues?per_page=${this.issuesPerPage}&page=${page}`,
-        {
-          headers: {
-            Authorization: `token ${authToken}`,
-          },
-        }
-      );
+      const url = `${this.selectedRepo.url}/issues?per_page=${this.issuesPerPage}&page=${page}`;
+      const req = await fetch(url, {
+        headers: { Authorization: `token ${authToken}` },
+      });
       const data = await req.json();
       this.issues = data;
       this.searching.issues = false;

@@ -8,7 +8,7 @@
         <th>Issues</th>
       </tr>
       <tr
-        v-for="(x, i) in results"
+        v-for="(x, i) in repos"
         v-bind:key="i"
         v-bind:class="[x.id === selectedRepo.id ? 'selected-repo' : '']"
       >
@@ -26,7 +26,7 @@
       <button v-on:click="goToRepoPage(repoPage - 1)">Previous</button>
       <div>
         Page: {{ repoPage }} /
-        {{ Math.floor(resultsCount / reposPerPage) + 1 }}
+        {{ Math.floor(reposCount / reposPerPage) + 1 }}
       </div>
       <button v-on:click="goToRepoPage(repoPage + 1)">Next</button>
     </div>
@@ -36,8 +36,8 @@
 <script>
 export default {
   props: {
-    results: Array,
-    resultsCount: Number,
+    repos: Array,
+    reposCount: Number,
     showIssues: Function,
     selectedRepo: Object,
     setSelectedRepo: Function,

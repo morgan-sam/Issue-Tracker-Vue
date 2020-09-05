@@ -17,9 +17,9 @@
     </div>
     <div class="two-grid-container">
       <Grid
-        v-if="results.length"
-        v-bind:results="results"
-        v-bind:resultsCount="resultsCount"
+        v-if="repos.length"
+        v-bind:repos="repos"
+        v-bind:reposCount="reposCount"
         v-bind:showIssues="showIssues"
         v-bind:selectedRepo="selectedRepo"
         v-bind:setSelectedRepo="setSelectedRepo"
@@ -48,8 +48,8 @@ export default {
   name: "App",
   data: () => ({
     issues: [],
-    results: [],
-    resultsCount: 0,
+    repos: [],
+    reposCount: 0,
     selectedRepo: { id: null, open_issues: null },
     issuePage: 1,
     issuesPerPage: 40,
@@ -78,8 +78,8 @@ export default {
         }
       );
       const data = await req.json();
-      this.results = data.items;
-      this.resultsCount = data.total_count;
+      this.repos = data.items;
+      this.reposCount = data.total_count;
       this.searching.repos = false;
     },
     showIssues: async function (page) {

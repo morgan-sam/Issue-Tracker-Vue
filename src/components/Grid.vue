@@ -22,25 +22,17 @@
         <td>{{ x.open_issues }}</td>
       </tr>
     </table>
-    <div class="btn-container">
-      <button v-if="repoPage > 1" v-on:click="goToRepoPage(repoPage - 1)">
-        Previous
-      </button>
-      <div>
-        Page: {{ repoPage }} /
-        {{ Math.floor(reposCount / reposPerPage) + 1 }}
-      </div>
-      <button
-        v-if="repoPage * reposPerPage < reposCount"
-        v-on:click="goToRepoPage(repoPage + 1)"
-      >
-        Next
-      </button>
-    </div>
+    <Pagination
+      v-bind:page="repoPage"
+      v-bind:perPage="reposPerPage"
+      v-bind:entryCount="reposCount"
+      v-bind:goToPage="goToRepoPage"
+    />
   </div>
 </template>
 
 <script>
+import Pagination from "./Pagination.vue";
 export default {
   props: {
     repos: Array,
@@ -52,6 +44,7 @@ export default {
     repoPage: Number,
     reposPerPage: Number,
   },
+  components: { Pagination },
 };
 </script>
 

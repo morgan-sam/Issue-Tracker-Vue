@@ -42,7 +42,7 @@ export default {
   methods: {
     formPageTransition: function () {
       const page = parseInt(this.selectedPage);
-      if (page > 0 && page * this.perPage < this.entryCount)
+      if (page > 0 && (page - 1) * this.perPage < this.entryCount)
         this.goToPage(page);
       else alert("Entered page is out of bounds");
     },

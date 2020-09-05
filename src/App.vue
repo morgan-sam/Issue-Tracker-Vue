@@ -70,6 +70,7 @@ export default {
   },
   methods: {
     showRepos: async function (page) {
+      console.log("search repos");
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(

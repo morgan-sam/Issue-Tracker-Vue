@@ -30,6 +30,10 @@
         Next
       </button>
     </div>
+    <div>
+      Page: {{ issuePage }} /
+      {{ Math.floor(selectedRepo.open_issues / issuesPerPage) + 1 }}
+    </div>
   </div>
 </template>
 

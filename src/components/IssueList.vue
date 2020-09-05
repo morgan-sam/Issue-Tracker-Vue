@@ -17,8 +17,18 @@
       </li>
     </ul>
     <div class="btn-container">
-      <button v-on:click="changeIssuePage(-1)">Previous</button>
-      <button v-on:click="changeIssuePage(1)">Next</button>
+      <button v-if="this.issuePage > 1" v-on:click="changeIssuePage(-1)">
+        Previous
+      </button>
+      <div>{{ getIssuesSpanText() }}</div>
+      <button
+        v-if="
+          this.issuePage * this.issuesPerPage < this.selectedRepo.open_issues
+        "
+        v-on:click="changeIssuePage(1)"
+      >
+        Next
+      </button>
     </div>
   </div>
 </template>
@@ -32,6 +42,7 @@ export default {
     issuesPerPage: Number,
     changeIssuePage: Function,
     searching: Object,
+    selectedRepo: Object,
   },
   methods: {
     getLabelStyle: (color) => ({
@@ -42,6 +53,14 @@ export default {
           : "none"
       }`,
     }),
+    getIssuesSpanText: function () {
+      const min = 1 + (this.issuePage - 1) * this.issuesPerPage;
+      const max = Math.min(
+        this.issuePage * this.issuesPerPage,
+        this.selectedRepo.open_issues
+      );
+      return `Issues ${min} to ${max} of ${this.selectedRepo.open_issues}`;
+    },
   },
 };
 </script>
@@ -69,5 +88,6 @@ li {
 }
 .btn-container {
   display: flex;
+  align-items: center;
 }
 </style>

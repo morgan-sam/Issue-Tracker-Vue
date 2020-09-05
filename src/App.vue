@@ -29,6 +29,7 @@
         v-bind:issuePage="issuePage"
         v-bind:issuesPerPage="issuesPerPage"
         v-bind:changeIssuePage="changeIssuePage"
+        v-bind:selectedRepo="selectedRepo"
         v-bind:searching="searching"
       />
     </div>
@@ -44,7 +45,7 @@ export default {
   data: () => ({
     issues: [],
     results: [],
-    selectedRepo: { id: null },
+    selectedRepo: { id: null, open_issues: null },
     issuePage: 1,
     issuesPerPage: 40,
     search: "",
@@ -86,7 +87,6 @@ export default {
       );
       const data = await req.json();
       this.issues = data;
-      console.log(data);
       this.searching.issues = false;
     },
     changeIssuePage: async function (diff) {

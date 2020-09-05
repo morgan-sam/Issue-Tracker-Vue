@@ -23,12 +23,19 @@
       </tr>
     </table>
     <div class="btn-container">
-      <button v-on:click="goToRepoPage(repoPage - 1)">Previous</button>
+      <button v-if="repoPage > 1" v-on:click="goToRepoPage(repoPage - 1)">
+        Previous
+      </button>
       <div>
         Page: {{ repoPage }} /
         {{ Math.floor(reposCount / reposPerPage) + 1 }}
       </div>
-      <button v-on:click="goToRepoPage(repoPage + 1)">Next</button>
+      <button
+        v-if="repoPage * reposPerPage < reposCount"
+        v-on:click="goToRepoPage(repoPage + 1)"
+      >
+        Next
+      </button>
     </div>
   </div>
 </template>

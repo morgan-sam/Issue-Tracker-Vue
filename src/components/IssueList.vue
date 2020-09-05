@@ -16,42 +16,23 @@
         </div>
       </li>
     </ul>
-    <div class="btn-container">
-      <button v-if="issuePage > 1" v-on:click="goToIssuePage(issuePage - 1)">
-        Previous
-      </button>
-      <div>{{ getIssuesSpanText() }}</div>
-      <button
-        v-if="issuePage * issuesPerPage < selectedRepo.open_issues"
-        v-on:click="goToIssuePage(issuePage + 1)"
-      >
-        Next
-      </button>
-    </div>
-    <div>
-      Page: {{ issuePage }} /
-      {{ Math.floor(selectedRepo.open_issues / issuesPerPage) + 1 }}
-    </div>
-    <div>
-      <form v-on:keydown.enter.prevent v-on:keyup.enter="formPageTransition">
-        <label>Go to page: </label
-        ><input
-          class="pageSelectInput"
-          v-model="selectedPage"
-          type="number"
-          name="number"
-        />
-      </form>
-    </div>
+    <Pagination
+      v-bind:page="issuePage"
+      v-bind:perPage="issuesPerPage"
+      v-bind:entryCount="selectedRepo.open_issues"
+      v-bind:goToPage="goToIssuePage"
+    />
   </div>
 </template>
 
 <script>
+import Pagination from "./Pagination.vue";
 export default {
   name: "issue-list",
   data: () => ({
     selectedPage: null,
   }),
+  components: { Pagination },
   props: {
     issues: Array,
     issuePage: Number,
@@ -69,14 +50,14 @@ export default {
           : "none"
       }`,
     }),
-    getIssuesSpanText: function () {
-      const min = 1 + (this.issuePage - 1) * this.issuesPerPage;
-      const max = Math.min(
-        this.issuePage * this.issuesPerPage,
-        this.selectedRepo.open_issues
-      );
-      return `Issues ${min} to ${max} of ${this.selectedRepo.open_issues}`;
-    },
+    // getIssuesSpanText: function () {
+    //   const min = 1 + (this.issuePage - 1) * this.issuesPerPage;
+    //   const max = Math.min(
+    //     this.issuePage * this.issuesPerPage,
+    //     this.selectedRepo.open_issues
+    //   );
+    //   return `Issues ${min} to ${max} of ${this.selectedRepo.open_issues}`;
+    // },
     formPageTransition: function () {
       const page = parseInt(this.selectedPage);
       if (page > 0 && page * this.issuesPerPage < this.selectedRepo.open_issues)
@@ -111,9 +92,5 @@ li {
 .btn-container {
   display: flex;
   align-items: center;
-}
-.pageSelectInput {
-  width: 3rem;
-  text-align: center;
 }
 </style>

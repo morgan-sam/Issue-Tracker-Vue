@@ -47,14 +47,17 @@ import Grid from "./components/Grid.vue";
 export default {
   name: "App",
   data: () => ({
-    issues: [],
     repos: [],
     reposCount: 0,
-    selectedRepo: { id: null, open_issues: null },
+    repoPage: 1,
+    reposPerPage: 20,
+
+    issues: [],
     issuePage: 1,
     issuesPerPage: 40,
-    reposPerPage: 20,
-    repoPage: 1,
+
+    selectedRepo: { id: null, open_issues: null },
+
     search: "",
     searching: {
       repos: false,

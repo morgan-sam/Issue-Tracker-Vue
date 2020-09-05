@@ -22,6 +22,9 @@
         v-bind:showIssues="showIssues"
         v-bind:selectedRepo="selectedRepo"
         v-bind:setSelectedRepo="setSelectedRepo"
+        v-bind:goToRepoPage="goToRepoPage"
+        v-bind:repoPage="repoPage"
+        v-bind:reposPerPage="reposPerPage"
       />
       <IssueList
         v-if="issues.length"
@@ -48,6 +51,8 @@ export default {
     selectedRepo: { id: null, open_issues: null },
     issuePage: 1,
     issuesPerPage: 40,
+    reposPerPage: 20,
+    repoPage: 1,
     search: "",
     searching: {
       repos: false,
@@ -59,11 +64,11 @@ export default {
     Grid,
   },
   methods: {
-    getGithubResults: async function () {
+    getGithubResults: async function (page) {
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
-        `https://api.github.com/search/repositories?q=${this.search}&per_page=20&page=1&sort=stars&order=desc`,
+        `https://api.github.com/search/repositories?q=${this.search}&per_page=${this.reposPerPage}&page=${page}&sort=stars&order=desc`,
         {
           headers: {
             Authorization: `token ${authToken}`,
@@ -92,6 +97,10 @@ export default {
     goToIssuePage: async function (newPage) {
       await this.showIssues(newPage);
       this.issuePage = newPage;
+    },
+    goToRepoPage: async function (newPage) {
+      await this.getGithubResults(newPage);
+      this.repoPage = newPage;
     },
     setSelectedRepo: function (repo) {
       this.selectedRepo = repo;

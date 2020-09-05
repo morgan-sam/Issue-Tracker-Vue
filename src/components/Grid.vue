@@ -12,7 +12,7 @@
         v-bind:key="i"
         v-bind:class="[x.id === selectedRepo.id ? 'selected-repo' : '']"
       >
-        <td>{{ i + 1 }}</td>
+        <td>{{ i + 1 + (repoPage - 1) * reposPerPage }}</td>
         <td>
           <span class="name-text" v-on:click="setSelectedRepo(x)">{{
             x.name
@@ -31,19 +31,14 @@
 
 <script>
 export default {
-  data: () => ({
-    repoPage: 1,
-  }),
   props: {
     results: Array,
     showIssues: Function,
     selectedRepo: Object,
     setSelectedRepo: Function,
-  },
-  methods: {
-    goToRepoPage: function (page) {
-      console.log(page);
-    },
+    goToRepoPage: Function,
+    repoPage: Number,
+    reposPerPage: Number,
   },
 };
 </script>

@@ -17,14 +17,12 @@
       </li>
     </ul>
     <div class="btn-container">
-      <button v-if="this.issuePage > 1" v-on:click="changeIssuePage(-1)">
+      <button v-if="issuePage > 1" v-on:click="changeIssuePage(-1)">
         Previous
       </button>
       <div>{{ getIssuesSpanText() }}</div>
       <button
-        v-if="
-          this.issuePage * this.issuesPerPage < this.selectedRepo.open_issues
-        "
+        v-if="issuePage * issuesPerPage < selectedRepo.open_issues"
         v-on:click="changeIssuePage(1)"
       >
         Next

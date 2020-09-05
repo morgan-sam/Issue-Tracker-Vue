@@ -9,7 +9,7 @@
         <input
           v-model="search"
           v-on:keydown.enter.prevent
-          v-on:keyup.enter="showRepos"
+          v-on:keyup.enter="showRepos(1)"
           type="text"
         />
       </form>

@@ -32,12 +32,26 @@
       Page: {{ issuePage }} /
       {{ Math.floor(selectedRepo.open_issues / issuesPerPage) + 1 }}
     </div>
+    <div>
+      <form v-on:keydown.enter.prevent v-on:keyup.enter="formPageTransition">
+        <label>Go to page: </label
+        ><input
+          class="pageSelectInput"
+          v-model="selectedPage"
+          type="number"
+          name="number"
+        />
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "issue-list",
+  data: () => ({
+    selectedPage: null,
+  }),
   props: {
     issues: Array,
     issuePage: Number,
@@ -62,6 +76,12 @@ export default {
         this.selectedRepo.open_issues
       );
       return `Issues ${min} to ${max} of ${this.selectedRepo.open_issues}`;
+    },
+    formPageTransition: function () {
+      const page = parseInt(this.selectedPage);
+      if (page > 0 && page * this.issuesPerPage < this.selectedRepo.open_issues)
+        this.goToIssuePage(page);
+      else alert("Entered page is out of bounds");
     },
   },
 };
@@ -91,5 +111,9 @@ li {
 .btn-container {
   display: flex;
   align-items: center;
+}
+.pageSelectInput {
+  width: 3rem;
+  text-align: center;
 }
 </style>

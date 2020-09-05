@@ -19,6 +19,7 @@
       <Grid
         v-if="results.length"
         v-bind:results="results"
+        v-bind:resultsCount="resultsCount"
         v-bind:showIssues="showIssues"
         v-bind:selectedRepo="selectedRepo"
         v-bind:setSelectedRepo="setSelectedRepo"
@@ -48,6 +49,7 @@ export default {
   data: () => ({
     issues: [],
     results: [],
+    resultsCount: 0,
     selectedRepo: { id: null, open_issues: null },
     issuePage: 1,
     issuesPerPage: 40,
@@ -77,6 +79,7 @@ export default {
       );
       const data = await req.json();
       this.results = data.items;
+      this.resultsCount = data.total_count;
       this.searching.repos = false;
     },
     showIssues: async function (page) {

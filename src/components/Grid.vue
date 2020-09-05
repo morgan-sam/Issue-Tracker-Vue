@@ -24,6 +24,10 @@
     </table>
     <div class="btn-container">
       <button v-on:click="goToRepoPage(repoPage - 1)">Previous</button>
+      <div>
+        Page: {{ repoPage }} /
+        {{ Math.floor(resultsCount / reposPerPage) + 1 }}
+      </div>
       <button v-on:click="goToRepoPage(repoPage + 1)">Next</button>
     </div>
   </div>
@@ -33,6 +37,7 @@
 export default {
   props: {
     results: Array,
+    resultsCount: Number,
     showIssues: Function,
     selectedRepo: Object,
     setSelectedRepo: Function,

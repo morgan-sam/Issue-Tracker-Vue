@@ -9,11 +9,11 @@
         <input
           v-model="search"
           v-on:keydown.enter.prevent
-          v-on:keyup.enter="getGithubResults"
+          v-on:keyup.enter="showRepos"
           type="text"
         />
       </form>
-      <button v-on:click="getGithubResults">Search</button>
+      <button v-on:click="showRepos">Search</button>
     </div>
     <div class="two-grid-container">
       <Grid
@@ -66,7 +66,7 @@ export default {
     Grid,
   },
   methods: {
-    getGithubResults: async function (page) {
+    showRepos: async function (page) {
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const req = await fetch(
@@ -102,7 +102,7 @@ export default {
       this.issuePage = newPage;
     },
     goToRepoPage: async function (newPage) {
-      await this.getGithubResults(newPage);
+      await this.showRepos(newPage);
       this.repoPage = newPage;
     },
     setSelectedRepo: function (repo) {

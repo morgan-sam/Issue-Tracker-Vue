@@ -17,13 +17,13 @@
       </li>
     </ul>
     <div class="btn-container">
-      <button v-if="issuePage > 1" v-on:click="changeIssuePage(-1)">
+      <button v-if="issuePage > 1" v-on:click="goToIssuePage(issuePage - 1)">
         Previous
       </button>
       <div>{{ getIssuesSpanText() }}</div>
       <button
         v-if="issuePage * issuesPerPage < selectedRepo.open_issues"
-        v-on:click="changeIssuePage(1)"
+        v-on:click="goToIssuePage(issuePage + 1)"
       >
         Next
       </button>
@@ -42,7 +42,7 @@ export default {
     issues: Array,
     issuePage: Number,
     issuesPerPage: Number,
-    changeIssuePage: Function,
+    goToIssuePage: Function,
     searching: Object,
     selectedRepo: Object,
   },

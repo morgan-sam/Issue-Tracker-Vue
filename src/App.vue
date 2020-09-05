@@ -28,7 +28,7 @@
         v-bind:issues="issues"
         v-bind:issuePage="issuePage"
         v-bind:issuesPerPage="issuesPerPage"
-        v-bind:changeIssuePage="changeIssuePage"
+        v-bind:goToIssuePage="goToIssuePage"
         v-bind:selectedRepo="selectedRepo"
         v-bind:searching="searching"
       />
@@ -89,9 +89,7 @@ export default {
       this.issues = data;
       this.searching.issues = false;
     },
-    changeIssuePage: async function (diff) {
-      let newPage = this.issuePage + diff;
-      if (newPage < 1) newPage = 1;
+    goToIssuePage: async function (newPage) {
       await this.showIssues(newPage);
       this.issuePage = newPage;
     },

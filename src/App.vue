@@ -151,7 +151,7 @@ button {
   grid-template-rows: 1fr;
 }
 .two-grid-container > * {
-  width: auto;
+  width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: center;

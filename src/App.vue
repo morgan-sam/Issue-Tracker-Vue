@@ -1,20 +1,22 @@
 <template>
   <div class="app">
-    <h1 class="app-title">GitHub Issue Tracker</h1>
-    <div class="horizontal-container">
-      <div v-if="searching.repos">Searching...</div>
-      <div v-else>Enter a search term:</div>
-    </div>
-    <div class="horizontal-container">
-      <form>
-        <input
-          v-model="search"
-          v-on:keydown.enter.prevent
-          v-on:keyup.enter="showRepos(1)"
-          type="text"
-        />
-      </form>
-      <button v-on:click="showRepos">Search</button>
+    <div class="header">
+      <h1 class="app-title">GitHub Issue Tracker</h1>
+      <div class="horizontal-container">
+        <div v-if="searching.repos">Searching...</div>
+        <div v-else>Enter a search term:</div>
+      </div>
+      <div class="horizontal-container">
+        <form>
+          <input
+            v-model="search"
+            v-on:keydown.enter.prevent
+            v-on:keyup.enter="showRepos(1)"
+            type="text"
+          />
+        </form>
+        <button v-on:click="showRepos">Search</button>
+      </div>
     </div>
     <div class="two-grid-container">
       <Grid
@@ -122,21 +124,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .app-title {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
 }
 button {
   width: fit-content;
   margin: 0.5rem;
 }
 .horizontal-container {
+  margin: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -146,7 +149,6 @@ button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  width: 100%;
 }
 .two-grid-container > * {
   width: auto;

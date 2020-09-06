@@ -129,6 +129,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 .app-title {
   font-size: 2rem;
@@ -145,8 +146,17 @@ button {
   align-items: center;
   justify-content: center;
 }
+.header {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
 .two-grid-container {
   display: grid;
+  flex: 1 1 auto;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
 }

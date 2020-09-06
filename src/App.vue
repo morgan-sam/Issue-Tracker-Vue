@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <h1 class="app-title">GitHub Issue Tracker</h1>
     <div class="horizontal-container">
       <div v-if="searching.repos">Searching...</div>
       <div v-else>Enter a search term:</div>
@@ -126,6 +127,10 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 button {
   width: fit-content;

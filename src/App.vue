@@ -53,11 +53,11 @@ export default {
     repos: [],
     reposCount: 0,
     repoPage: 1,
-    reposPerPage: 20,
+    reposPerPage: 15,
 
     issues: [],
     issuePage: 1,
-    issuesPerPage: 40,
+    issuesPerPage: 35,
 
     selectedRepo: { id: null, open_issues: null },
 

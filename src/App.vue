@@ -3,8 +3,7 @@
     <div class="header">
       <h1 class="app-title">GitHub Issue Tracker</h1>
       <div class="horizontal-container">
-        <div v-if="searching.repos">Searching...</div>
-        <div v-else>Enter a search term:</div>
+        <div>Enter a search term:</div>
       </div>
       <div class="horizontal-container">
         <form>

@@ -58,7 +58,7 @@ export default {
 
     issues: [],
     issuePage: 1,
-    issuesPerPage: 35,
+    issuesPerPage: 20,
 
     selectedRepo: { id: null, open_issues: null },
 

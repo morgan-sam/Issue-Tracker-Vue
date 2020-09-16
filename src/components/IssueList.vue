@@ -68,7 +68,7 @@ ul {
 li {
   display: flex;
   text-align: left;
-  margin: 0 10px;
+  margin: 5px 10px;
 }
 .issue {
   margin-right: 10px;

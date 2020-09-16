@@ -20,7 +20,7 @@
     </div>
     <div class="two-grid-container">
       <Grid
-        v-if="repos ? repos.length > 0 : false"
+        v-if="repos ? repos.length > 0 && !searching.repos : false"
         v-bind:repos="repos"
         v-bind:reposCount="reposCount"
         v-bind:showIssues="showIssues"
@@ -30,6 +30,7 @@
         v-bind:repoPage="repoPage"
         v-bind:reposPerPage="reposPerPage"
       />
+      <div v-if="searching.repos">Searching Repos...</div>
       <IssueList
         v-if="issues ? issues.length > 0 : false"
         v-bind:issues="issues"

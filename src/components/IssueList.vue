@@ -3,17 +3,13 @@
   <div v-else>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
-        <div class="issue">
-          {{ i + 1 + (issuePage - 1) * issuesPerPage }}: {{ x.title }}
-        </div>
+        <div class="issue">{{ i + 1 + (issuePage - 1) * issuesPerPage }}: {{ x.title }}</div>
         <div
           class="label"
           v-for="(a, b) in x.labels"
           v-bind:key="b"
           v-bind:style="getLabelStyle(a.color)"
-        >
-          {{ a.name }}
-        </div>
+        >{{ a.name }}</div>
       </li>
     </ul>
     <Pagination
@@ -50,14 +46,6 @@ export default {
           : "none"
       }`,
     }),
-    // getIssuesSpanText: function () {
-    //   const min = 1 + (this.issuePage - 1) * this.issuesPerPage;
-    //   const max = Math.min(
-    //     this.issuePage * this.issuesPerPage,
-    //     this.selectedRepo.open_issues
-    //   );
-    //   return `Issues ${min} to ${max} of ${this.selectedRepo.open_issues}`;
-    // },
     formPageTransition: function () {
       const page = parseInt(this.selectedPage);
       if (page > 0 && page * this.issuesPerPage < this.selectedRepo.open_issues)

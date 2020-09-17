@@ -27,8 +27,8 @@
     <Pagination
       v-bind:page="repoPage"
       v-bind:perPage="reposPerPage"
-      v-bind:entryCount="reposCount"
-      v-bind:maxEntryCount="maxReposCount"
+      v-bind:entryCount="repoCount"
+      v-bind:maxEntryCount="maxrepoCount"
       v-bind:goToPage="goToRepoPage"
     />
   </div>
@@ -38,11 +38,11 @@
 import Pagination from "./Pagination.vue";
 export default {
   data: () => ({
-    maxReposCount: 1000,
+    maxrepoCount: 1000,
   }),
   props: {
     repos: Array,
-    reposCount: Number,
+    repoCount: Number,
     showIssues: Function,
     selectedRepo: Object,
     setSelectedRepo: Function,

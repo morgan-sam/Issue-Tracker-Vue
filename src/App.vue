@@ -22,7 +22,7 @@
         <Grid
           v-if="repos ? repos.length > 0 && !searching.repos : false"
           v-bind:repos="repos"
-          v-bind:reposCount="reposCount"
+          v-bind:repoCount="repoCount"
           v-bind:showIssues="showIssues"
           v-bind:selectedRepo="selectedRepo"
           v-bind:setSelectedRepo="setSelectedRepo"
@@ -54,7 +54,7 @@ export default {
   name: "App",
   data: () => ({
     repos: [],
-    reposCount: 0,
+    repoCount: 0,
     repoPage: 1,
     reposPerPage: 15,
 
@@ -85,7 +85,7 @@ export default {
       });
       const data = await req.json();
       this.repos = data.items;
-      this.reposCount = data.total_count;
+      this.repoCount = data.total_count;
       this.searching.repos = false;
     },
     showIssues: async function (page) {

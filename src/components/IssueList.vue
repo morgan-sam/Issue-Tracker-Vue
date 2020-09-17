@@ -9,7 +9,9 @@
           v-for="(a, b) in x.labels"
           v-bind:key="b"
           v-bind:style="getLabelStyle(a.color)"
-        >{{ a.name }}</div>
+        >
+          <span class="label-text">{{ a.name }}</span>
+        </div>
       </li>
     </ul>
     <Pagination
@@ -78,6 +80,13 @@ li {
   width: fit-content;
   margin-right: 10px;
   padding: 5px;
+}
+.label-text {
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: invert(1) grayscale(1) contrast(10);
 }
 .btn-container {
   display: flex;

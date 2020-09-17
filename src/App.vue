@@ -17,29 +17,31 @@
         <button v-on:click="showRepos">Search</button>
       </div>
     </div>
-    <div class="two-grid-container">
-      <Grid
-        v-if="repos ? repos.length > 0 && !searching.repos : false"
-        v-bind:repos="repos"
-        v-bind:reposCount="reposCount"
-        v-bind:showIssues="showIssues"
-        v-bind:selectedRepo="selectedRepo"
-        v-bind:setSelectedRepo="setSelectedRepo"
-        v-bind:goToRepoPage="goToRepoPage"
-        v-bind:repoPage="repoPage"
-        v-bind:reposPerPage="reposPerPage"
-      />
-      <div v-if="searching.repos">Searching Repos...</div>
-      <IssueList
-        v-if="issues ? issues.length > 0 && !searching.issues : false"
-        v-bind:issues="issues"
-        v-bind:issuePage="issuePage"
-        v-bind:issuesPerPage="issuesPerPage"
-        v-bind:goToIssuePage="goToIssuePage"
-        v-bind:selectedRepo="selectedRepo"
-        v-bind:searching="searching"
-      />
-      <div v-if="searching.issues">Searching Issues...</div>
+    <div class="bottom-section">
+      <div class="two-grid-container">
+        <Grid
+          v-if="repos ? repos.length > 0 && !searching.repos : false"
+          v-bind:repos="repos"
+          v-bind:reposCount="reposCount"
+          v-bind:showIssues="showIssues"
+          v-bind:selectedRepo="selectedRepo"
+          v-bind:setSelectedRepo="setSelectedRepo"
+          v-bind:goToRepoPage="goToRepoPage"
+          v-bind:repoPage="repoPage"
+          v-bind:reposPerPage="reposPerPage"
+        />
+        <div v-if="searching.repos">Searching Repos...</div>
+        <IssueList
+          v-if="issues ? issues.length > 0 && !searching.issues : false"
+          v-bind:issues="issues"
+          v-bind:issuePage="issuePage"
+          v-bind:issuesPerPage="issuesPerPage"
+          v-bind:goToIssuePage="goToIssuePage"
+          v-bind:selectedRepo="selectedRepo"
+          v-bind:searching="searching"
+        />
+        <div v-if="searching.issues">Searching Issues...</div>
+      </div>
     </div>
   </div>
 </template>
@@ -130,11 +132,15 @@ export default {
   justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 100vh;
 }
 .app-title {
   font-size: 2rem;
   margin: 2rem;
+}
+.bottom-section {
+  display: flex;
+  flex: 1;
 }
 button {
   width: fit-content;

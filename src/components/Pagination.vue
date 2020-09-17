@@ -4,10 +4,10 @@
       <button v-if="page > 1" v-on:click="goToPage(page - 1)">Previous</button>
       <div>
         Page: {{ page }} /
-        {{ Math.min(Math.floor(entryCount / perPage) + 1, Math.ceil(maxEntryCount / perPage)) }}
+        {{ maxEntryCount === null ? Math.floor(entryCount / perPage) + 1 : Math.min(Math.floor(entryCount / perPage) + 1, Math.ceil(maxEntryCount / perPage)) }}
       </div>
       <button
-        v-if="page * perPage < entryCount && page < Math.ceil(maxEntryCount / perPage)"
+        v-if="page * perPage < entryCount && (maxEntryCount === null ? true : page < Math.ceil(maxEntryCount / perPage))"
         v-on:click="goToPage(page + 1)"
       >Next</button>
     </div>
@@ -30,16 +30,19 @@ export default {
     page: Number,
     perPage: Number,
     entryCount: Number,
-    maxEntryCount: Number,
+    maxEntryCount: { type: Number, default: null },
     goToPage: Function,
   },
   methods: {
     formPageTransition: function () {
+      console.log(this.maxEntryCount);
       const page = parseInt(this.selectedPage);
       if (
         page > 0 &&
         (page - 1) * this.perPage < this.entryCount &&
-        page <= Math.ceil(this.maxEntryCount / this.perPage)
+        this.maxEntryCount === null
+          ? true
+          : page <= Math.ceil(this.maxEntryCount / this.perPage)
       )
         this.goToPage(page);
       else alert("Entered page is out of bounds");

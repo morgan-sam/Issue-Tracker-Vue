@@ -14,9 +14,11 @@
       >
         <td>{{ i + 1 + (repoPage - 1) * reposPerPage }}</td>
         <td>
-          <span class="name-text" v-on:click="setSelectedRepo(x)">{{
+          <span class="name-text" v-on:click="setSelectedRepo(x)">
+            {{
             x.name
-          }}</span>
+            }}
+          </span>
         </td>
         <td>{{ x.stargazers_count }}</td>
         <td>{{ x.open_issues }}</td>
@@ -26,6 +28,7 @@
       v-bind:page="repoPage"
       v-bind:perPage="reposPerPage"
       v-bind:entryCount="reposCount"
+      v-bind:maxEntryCount="maxReposCount"
       v-bind:goToPage="goToRepoPage"
     />
   </div>
@@ -34,6 +37,9 @@
 <script>
 import Pagination from "./Pagination.vue";
 export default {
+  data: () => ({
+    maxReposCount: 1000,
+  }),
   props: {
     repos: Array,
     reposCount: Number,

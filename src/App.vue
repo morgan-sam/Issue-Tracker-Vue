@@ -60,7 +60,7 @@ export default {
 
     issues: [],
     issuePage: 1,
-    issuesPerPage: 20,
+    issuesPerPage: 15,
 
     selectedRepo: { id: null, open_issues: null },
 

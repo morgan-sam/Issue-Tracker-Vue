@@ -69,6 +69,7 @@ li {
   display: flex;
   text-align: left;
   margin: 5px 10px;
+  align-items: center;
 }
 .issue {
   margin-right: 10px;
@@ -76,6 +77,7 @@ li {
 .label {
   width: fit-content;
   margin-right: 10px;
+  padding: 5px;
 }
 .btn-container {
   display: flex;

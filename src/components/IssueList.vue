@@ -1,9 +1,13 @@
 <template>
-  <div v-if="searching.issues">Loading...</div>
+  <div v-if="issues.length === 0">
+    This repo does not have any logged issues
+  </div>
   <div v-else>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
-        <div class="issue">{{ i + 1 + (issuePage - 1) * issuesPerPage }}: {{ x.title }}</div>
+        <div class="issue">
+          {{ i + 1 + (issuePage - 1) * issuesPerPage }}: {{ x.title }}
+        </div>
         <div
           class="label"
           v-for="(a, b) in x.labels"

@@ -32,7 +32,7 @@
         />
         <div v-if="searching.repos">Searching Repos...</div>
         <IssueList
-          v-if="issues ? issues.length > 0 && !searching.issues : false"
+          v-if="!searching.issues"
           v-bind:issues="issues"
           v-bind:issuePage="issuePage"
           v-bind:issuesPerPage="issuesPerPage"

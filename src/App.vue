@@ -144,7 +144,6 @@ export default {
 }
 button {
   width: fit-content;
-  margin: 0.5rem;
 }
 .horizontal-container {
   margin: 0.5rem;
@@ -152,6 +151,9 @@ button {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.horizontal-container > * {
+  margin: 0.25rem;
 }
 .header {
   flex: 0 1 auto;

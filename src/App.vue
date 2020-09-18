@@ -20,7 +20,7 @@
     <div class="bottom-section">
       <div class="two-grid-container">
         <RepoList
-          v-if="repos ? repos.length > 0 && !searching.repos : false"
+          v-if="!searching.repos"
           v-bind:repos="repos"
           v-bind:repoCount="repoCount"
           v-bind:showIssues="showIssues"

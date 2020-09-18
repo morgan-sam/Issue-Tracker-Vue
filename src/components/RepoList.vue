@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div v-if="repos.length === 0">No repos were found</div>
+  <div v-else>
     <table>
       <tr>
         <th>Index</th>
@@ -15,9 +16,7 @@
         <td>{{ i + 1 + (repoPage - 1) * reposPerPage }}</td>
         <td>
           <span class="name-text" v-on:click="setSelectedRepo(x)">
-            {{
-            x.name
-            }}
+            {{ x.name }}
           </span>
         </td>
         <td>{{ x.stargazers_count }}</td>

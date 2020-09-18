@@ -176,4 +176,9 @@ button {
   align-items: center;
   justify-content: center;
 }
+.emptyIcon {
+  height: 7rem;
+  width: 7rem;
+  margin: 3rem;
+}
 </style>

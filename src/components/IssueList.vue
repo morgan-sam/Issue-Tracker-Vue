@@ -1,6 +1,7 @@
 <template>
   <div v-if="issues.length === 0">
-    This repo does not have any logged issues
+    <span>This repo does not have any logged issues</span>
+    <img class="emptyIcon" src="../img/empty.svg" />
   </div>
   <div v-else>
     <ul>

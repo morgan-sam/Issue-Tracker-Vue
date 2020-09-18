@@ -1,5 +1,8 @@
 <template>
-  <div v-if="repos.length === 0">No repos were found</div>
+  <div v-if="repos.length === 0">
+    <span>No repos were found</span>
+    <img class="emptyIcon" src="../img/empty.svg" />
+  </div>
   <div v-else>
     <table>
       <tr>

@@ -19,7 +19,7 @@
     </div>
     <div class="bottom-section">
       <div class="two-grid-container">
-        <Grid
+        <RepoList
           v-if="repos ? repos.length > 0 && !searching.repos : false"
           v-bind:repos="repos"
           v-bind:repoCount="repoCount"
@@ -48,7 +48,7 @@
 
 <script>
 import IssueList from "./components/IssueList.vue";
-import Grid from "./components/Grid.vue";
+import RepoList from "./components/RepoList.vue";
 
 export default {
   name: "App",
@@ -72,7 +72,7 @@ export default {
   }),
   components: {
     IssueList,
-    Grid,
+    RepoList,
   },
   methods: {
     showRepos: async function (page) {

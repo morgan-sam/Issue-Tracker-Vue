@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     showRepos: async function (page) {
-      console.log(page);
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const url = `https://api.github.com/search/repositories?q=${this.search}&per_page=${this.reposPerPage}&page=${page}&sort=stars&order=desc`;

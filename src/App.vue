@@ -10,7 +10,7 @@
           <input
             v-model="search"
             v-on:keydown.enter.prevent
-            v-on:keyup.enter="showRepos(1)"
+            v-on:keyup.enter="search.length > 0 ? showRepos(1) : resetPage()"
             type="text"
           />
         </form>
@@ -76,6 +76,10 @@ export default {
     RepoList,
   },
   methods: {
+    resetPage: function () {
+      this.reposVisible = false;
+      this.selectedRepo = { id: null, open_issues: null };
+    },
     showRepos: async function (page) {
       this.reposVisible = true;
       this.searching.repos = true;
@@ -114,8 +118,10 @@ export default {
   },
   watch: {
     selectedRepo: async function () {
-      await this.showIssues();
-      this.issuePage = 1;
+      if (this.selectedRepo.id) {
+        await this.showIssues();
+        this.issuePage = 1;
+      }
     },
   },
 };

@@ -20,7 +20,7 @@
     <div class="bottom-section">
       <div class="two-grid-container">
         <RepoList
-          v-if="!searching.repos"
+          v-if="!searching.repos && reposVisible"
           v-bind:repos="repos"
           v-bind:repoCount="repoCount"
           v-bind:showIssues="showIssues"
@@ -32,7 +32,7 @@
         />
         <div v-if="searching.repos">Searching Repos...</div>
         <IssueList
-          v-if="!searching.issues"
+          v-if="!searching.issues && selectedRepo.id"
           v-bind:issues="issues"
           v-bind:issuePage="issuePage"
           v-bind:issuesPerPage="issuesPerPage"
@@ -62,6 +62,7 @@ export default {
     issuePage: 1,
     issuesPerPage: 15,
 
+    reposVisible: false,
     selectedRepo: { id: null, open_issues: null },
 
     search: "",
@@ -76,6 +77,7 @@ export default {
   },
   methods: {
     showRepos: async function (page) {
+      this.reposVisible = true;
       this.searching.repos = true;
       const authToken = process.env.VUE_APP_GITHUB_AUTH_TOKEN;
       const url = `https://api.github.com/search/repositories?q=${this.search}&per_page=${this.reposPerPage}&page=${page}&sort=stars&order=desc`;

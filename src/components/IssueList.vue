@@ -5,7 +5,7 @@
   </div>
   <div v-else>
     <div>
-      <span class="gfi-tag">good first issues: {{ gfiCount }}</span>
+      <span class="gfi-tag">good first issues: {{ gfis.length }}</span>
     </div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
@@ -41,7 +41,7 @@ export default {
   components: { Pagination },
   props: {
     issues: Array,
-    gfiCount: Number,
+    gfis: Array,
     issuePage: Number,
     issuesPerPage: Number,
     goToIssuePage: Function,

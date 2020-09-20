@@ -34,7 +34,7 @@
         <IssueList
           v-if="!searching.issues && selectedRepo.id"
           v-bind:issues="issues"
-          v-bind:gfiCount="gfiCount"
+          v-bind:gfis="gfis"
           v-bind:issuePage="issuePage"
           v-bind:issuesPerPage="issuesPerPage"
           v-bind:goToIssuePage="goToIssuePage"
@@ -65,7 +65,7 @@ export default {
 
     reposVisible: false,
     selectedRepo: { id: null, open_issues: null },
-    gfiCount: null,
+    gfis: null,
 
     search: "",
     searching: {
@@ -82,11 +82,10 @@ export default {
       this.reposVisible = false;
       this.selectedRepo = { id: null, open_issues: null };
     },
-    getGoodFirstIssuesCount: async function () {
-      const gfis = await fetch(
+    getGoodFirstIssues: async function () {
+      return await fetch(
         `${this.selectedRepo.url}/issues?labels=good%20first%20issue`
       ).then((response) => response.json());
-      return gfis.length;
     },
     showRepos: async function (page) {
       this.reposVisible = true;
@@ -127,7 +126,7 @@ export default {
   watch: {
     selectedRepo: async function () {
       if (this.selectedRepo.id) {
-        this.gfiCount = await this.getGoodFirstIssuesCount();
+        this.gfis = await this.getGoodFirstIssues();
         await this.showIssues();
         this.issuePage = 1;
       }

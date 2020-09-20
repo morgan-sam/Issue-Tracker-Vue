@@ -4,7 +4,9 @@
     <img class="emptyIcon" src="../img/empty.svg" />
   </div>
   <div v-else>
-    <div>Number of good first issues: {{ gfiCount }}</div>
+    <div>
+      <span class="gfi-tag">good first issues: {{ gfiCount }}</span>
+    </div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
         <div class="issue">
@@ -98,5 +100,10 @@ li {
 .btn-container {
   display: flex;
   align-items: center;
+}
+.gfi-tag {
+  padding: 5px;
+  color: white;
+  background-color: green;
 }
 </style>

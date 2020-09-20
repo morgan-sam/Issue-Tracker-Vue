@@ -4,6 +4,7 @@
     <img class="emptyIcon" src="../img/empty.svg" />
   </div>
   <div v-else>
+    <div>Number of good first issues: {{ gfiCount }}</div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
         <div class="issue">
@@ -38,6 +39,7 @@ export default {
   components: { Pagination },
   props: {
     issues: Array,
+    gfiCount: Number,
     issuePage: Number,
     issuesPerPage: Number,
     goToIssuePage: Function,

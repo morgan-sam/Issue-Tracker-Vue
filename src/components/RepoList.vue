@@ -10,6 +10,7 @@
         <th>Name</th>
         <th>Stars</th>
         <th>Issues</th>
+        <th>GFIs</th>
       </tr>
       <tr
         v-for="(x, i) in repos"
@@ -24,6 +25,7 @@
         </td>
         <td>{{ x.stargazers_count }}</td>
         <td>{{ x.open_issues }}</td>
+        <td>{{ gfiCount[i] }}</td>
       </tr>
     </table>
     <Pagination
@@ -42,9 +44,13 @@ export default {
   data: () => ({
     maxrepoCount: 1000,
   }),
+  mounted() {
+    console.log(this.gfiCount);
+  },
   props: {
     repos: Array,
     repoCount: Number,
+    gfiCount: Function,
     showIssues: Function,
     selectedRepo: Object,
     setSelectedRepo: Function,

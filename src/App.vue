@@ -23,6 +23,7 @@
           v-if="!searching.repos && reposVisible"
           v-bind:repos="repos"
           v-bind:repoCount="repoCount"
+          v-bind:gfiCount="gfiCount"
           v-bind:showIssues="showIssues"
           v-bind:selectedRepo="selectedRepo"
           v-bind:setSelectedRepo="setSelectedRepo"
@@ -57,6 +58,7 @@ export default {
     repoCount: 0,
     repoPage: 1,
     reposPerPage: 15,
+    gfiCount: null,
 
     issues: [],
     issuePage: 1,
@@ -80,6 +82,16 @@ export default {
       this.reposVisible = false;
       this.selectedRepo = { id: null, open_issues: null };
     },
+    getGoodFirstIssues: async function () {
+      return await Promise.all(
+        this.repos.map(async (el) => {
+          const gfis = await fetch(
+            `${el.url}/issues?labels=good%20first%20issue`
+          ).then((response) => response.json());
+          return gfis.length;
+        })
+      );
+    },
     showRepos: async function (page) {
       this.reposVisible = true;
       this.searching.repos = true;
@@ -91,6 +103,7 @@ export default {
       const data = await req.json();
       this.repos = data.items;
       this.repoCount = data.total_count;
+      this.gfiCount = await this.getGoodFirstIssues();
       this.searching.repos = false;
     },
     showIssues: async function (page) {

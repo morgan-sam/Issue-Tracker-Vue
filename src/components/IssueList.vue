@@ -4,12 +4,12 @@
     <img class="emptyIcon" src="../img/empty.svg" />
   </div>
   <div v-else>
-    <div>
-      <span
-        class="gfi-tag"
-        :style="{ 'background-color': getGoodFirstIssueColor() }"
-        >good first issues: {{ gfis.length }}</span
-      >
+    <div
+      v-if="gfis.length > 0"
+      class="gfi-tag"
+      :style="{ 'background-color': getGoodFirstIssueColor() }"
+    >
+      good first issues: {{ gfis.length }}
     </div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">

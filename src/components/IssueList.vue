@@ -5,7 +5,11 @@
   </div>
   <div v-else>
     <div>
-      <span class="gfi-tag">good first issues: {{ gfis.length }}</span>
+      <span
+        class="gfi-tag"
+        :style="{ 'background-color': getGoodFirstIssueColor() }"
+        >good first issues: {{ gfis.length }}</span
+      >
     </div>
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
@@ -49,6 +53,13 @@ export default {
     selectedRepo: Object,
   },
   methods: {
+    getGoodFirstIssueColor: function () {
+      return (
+        "#" +
+        this.gfis[0].labels.filter((el) => el.name === "good first issue")[0]
+          .color
+      );
+    },
     getLabelStyle: (color) => ({
       background: "#" + color,
       border: `1px solid ${
@@ -103,7 +114,5 @@ li {
 }
 .gfi-tag {
   padding: 5px;
-  color: white;
-  background-color: green;
 }
 </style>

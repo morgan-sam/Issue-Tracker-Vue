@@ -14,7 +14,10 @@
     <ul>
       <li v-for="(x, i) in issues" v-bind:key="i">
         <div class="issue">
-          {{ i + 1 + (issuePage - 1) * issuesPerPage }}: {{ x.title }}
+          <span class="issue-number">{{
+            i + 1 + (issuePage - 1) * issuesPerPage
+          }}</span
+          >: {{ x.title }}
         </div>
         <div
           class="label"

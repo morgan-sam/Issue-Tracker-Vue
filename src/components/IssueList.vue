@@ -17,7 +17,7 @@
           <span class="issue-number">{{
             i + 1 + (issuePage - 1) * issuesPerPage
           }}</span
-          >: {{ x.title }}
+          >: <a v-bind:href="x.html_url"> {{ x.title }}</a>
         </div>
         <div
           class="label"
